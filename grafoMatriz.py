@@ -144,6 +144,80 @@ class Grafo:
     else:
       print("\nAlgum vértice digitado não existe!\n")
 
+  # g) Verifica se o grafo é conexo ou não-conexo
+  def conexidade(self, verticeInicio):
+    print("VERIFICANDO CONEXIDADE")
+    # Cria a pilha e array de nós marcados e contador para marcar os nós visitados
+    quantidade_visitados = 0
+    nosMarcados = []
+    pilha = Pilha()
+    # Visita o Nó
+    print(f"Nó inicial visitado: {chr((verticeInicio+1)+96)}")
+    quantidade_visitados += 1
+    # Marca o nó inicial
+    nosMarcados.append(verticeInicio)
+    # Empilha o nó
+    pilha.push(verticeInicio)
+
+    while not pilha.isEmpty():
+      n = pilha.pop()
+      #print("Pilha está assim = ", pilha)
+
+      adjacentesDeN = self.adjacenciasVertice(n, nosMarcados)
+      #print(f"adjacentes de 0 = ", adjacentesDeN)
+      
+      while len(adjacentesDeN) > 0: # Roda em todos os adjacentes de "n" que ainda não foram marcados
+        print("Nó m visitado = ", chr((adjacentesDeN[0]+1) + 96))
+        quantidade_visitados += 1 # incrementa visitados
+        pilha.push(n)
+        #print("n colocado na pilha = ", pilha)
+        nosMarcados.append(adjacentesDeN[0]) # "m é marcado = ", nosMarcados)
+        n = adjacentesDeN[0] #"Troca o valor de n para m (n <- m(atribuição)) = ", n, "\n")
+        adjacentesDeN = self.adjacenciasVertice(n, nosMarcados)
+
+    # mostrando Percurso em profundidade
+    print("O percurso em profundidade foi:", end = " ")
+    for i in nosMarcados:
+      print(chr((i+1)+96), end = " ")
+    print("\n\n")
+
+    # Tendo o percurso em profundidade, poderemos verifica a conexidade
+    print(f"Qtd de vértices = {self.n}. Qtd_vistiados = {quantidade_visitados}")
+    # Verifica se o grafo é conexo ou não 
+    if(self.n == quantidade_visitados):
+      print("O grafo é conexo!\n\n")
+    else:
+      print("O grafo é não conexo!\n\n")
+  
+  # h) Menor caminho entre dois vértices utilizando o algoritmo de Dijkstra
+  def menor_caminho(self, v1, v2):
+    # Criando o array A(abertos) e criando os vértices com ele
+    A = []
+    for i in range(self.n):
+      A.append(i)
+      
+    # Criando o array de F(fechados)
+    F = []
+
+    # Criando o array S(Sucessores) de um vértice r
+    S = []
+    
+    # Número de vértices já processados pelo algoritmo
+    k = 0
+
+    # Vetor rot
+    rot = []
+
+    # Enquanto A != de vazio 
+    while len(A) != 0:
+      k += 1
+      
+  
+    
+    
+    
+    
+  
   # Exibe de forma reduzida devido a grande quantidade de vértices
   def show(self):
     print(f"\n n: {self.n:2d} ", end="")

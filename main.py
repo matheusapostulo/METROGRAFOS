@@ -20,19 +20,20 @@ controle_carregamento = True
 
 # MENU
 while True:
-  print("+-----------------------------------+")
-  print("|            METRÔGRAFOS            |")
-  print("+-----------------------------------+")
-  print("| 1: Ler dados do arquivo.          |")
-  print("| 2: Gravar os dados no arquivo.    |")
-  print("| 3: Inserir vértice.               |")
-  print("| 4: Inserir aresta.                |")
-  print("| 5: Remover vértice.               |")
-  print("| 6: Remover aresta.                |")
-  print("| 7: Mostrar conteúdo do arquivo.   |")
-  print("| 8: Mostrar grafo.                 |")
-  print("| 9: Encerrar a aplicação.          |")
-  print("+-----------------------------------+\n")
+  print("+---------------------------------------+")
+  print("|            METRÔGRAFOS                |")
+  print("+---------------------------------------+")
+  print("| 1: Ler dados do arquivo.              |")
+  print("| 2: Gravar os dados no arquivo.        |")
+  print("| 3: Inserir vértice.                   |")
+  print("| 4: Inserir aresta.                    |")
+  print("| 5: Remover vértice.                   |")
+  print("| 6: Remover aresta.                    |")
+  print("| 7: Menor caminho entre duas estações. |")
+  print("| 8: Mostrar conteúdo do arquivo.       |")
+  print("| 9: Mostrar grafo.                     |")
+  print("| 10: Encerrar a aplicação.             |")
+  print("+-------------------------------------+\n")
 
   opcao = int(input("Escolha uma opção: "))
 
@@ -130,8 +131,18 @@ while True:
         grafo.removeA(a1.upper(), a2.upper())  
       else:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
-        
-    case 7:  
+
+    case 7:
+      if controle_carregamento == False:
+        #v1 = input("Diga o vértice origem:")
+        #v2 = input("Diga o vértice destino:")
+        grafo.menor_caminho(1,2)
+      else:
+        print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")  
+      
+      
+      
+    case 8:  
       print("Mostrando o conteúdo do arquivo:\n")
       with open("grafo.txt", "r") as conteudo:
           lines = conteudo.read()
@@ -140,13 +151,13 @@ while True:
 
       conteudo.close()
       
-    case 8:
+    case 9:
       if controle_carregamento == False:
         grafo.show()
       else:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
         
-    case 9:
+    case 10:
       print("Aplicação encerrada!")
       break
       
