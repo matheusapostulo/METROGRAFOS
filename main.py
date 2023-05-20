@@ -20,20 +20,21 @@ controle_carregamento = True
 
 # MENU
 while True:
-  print("+---------------------------------------+")
-  print("|            METRÔGRAFOS                |")
-  print("+---------------------------------------+")
-  print("| 1: Ler dados do arquivo.              |")
-  print("| 2: Gravar os dados no arquivo.        |")
-  print("| 3: Inserir vértice.                   |")
-  print("| 4: Inserir aresta.                    |")
-  print("| 5: Remover vértice.                   |")
-  print("| 6: Remover aresta.                    |")
-  print("| 7: Menor caminho entre duas estações. |")
-  print("| 8: Mostrar conteúdo do arquivo.       |")
-  print("| 9: Mostrar grafo.                     |")
-  print("| 10: Encerrar a aplicação.             |")
-  print("+-------------------------------------+\n")
+  print("+----------------------------------------+")
+  print("|            METRÔGRAFOS                 |")
+  print("+----------------------------------------+")
+  print("| 1:  Ler dados do arquivo.              |")
+  print("| 2:  Gravar os dados no arquivo.        |")
+  print("| 3:  Inserir vértice.                   |")
+  print("| 4:  Inserir aresta.                    |")
+  print("| 5:  Remover vértice.                   |")
+  print("| 6:  Remover aresta.                    |")
+  print("| 7:  Menor caminho entre duas estações. |")
+  print("| 8:  Mostrar conexidade do grafo.       |")
+  print("| 9:  Mostrar conteúdo do arquivo.       |")
+  print("| 10: Mostrar grafo.                     |")
+  print("| 11: Encerrar a aplicação.              |")
+  print("+--------------------------------------+\n")
 
   opcao = int(input("Escolha uma opção: "))
 
@@ -140,9 +141,10 @@ while True:
       else:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")  
       
+    case 8:
+      grafo.conexidade()
       
-      
-    case 8:  
+    case 9:  
       print("Mostrando o conteúdo do arquivo:\n")
       with open("grafo.txt", "r") as conteudo:
           lines = conteudo.read()
@@ -151,13 +153,13 @@ while True:
 
       conteudo.close()
       
-    case 9:
+    case 10:
       if controle_carregamento == False:
         grafo.show()
       else:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
         
-    case 10:
+    case 11:
       print("Aplicação encerrada!")
       break
       

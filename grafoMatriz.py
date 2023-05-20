@@ -6,6 +6,7 @@
 from math import inf
 import os
 from copy import deepcopy # Usado nos métodos de cópia de lista. Opções 2 e 4!
+from pilha import Pilha
 
 infinito = inf
 
@@ -142,17 +143,27 @@ class Grafo:
         self.m -= 1
       # atualiza qtd arestas
     else:
-      print("\nAlgum vértice digitado não existe!\n")
+      print("\nUm dos vértices digitados não existe!\n")
 
   # g) Verifica se o grafo é conexo ou não-conexo
-  def conexidade(self, verticeInicio):
+  #PERGUNTAR PRO PROF SE PRECISA DO VERTICE INICIAL
+  def adjacenciasVertice(self, n, nosMarcados):
+    vetorAdjacencias = []
+    for i in range(self.n): #percorre linhas
+      if self.adj[n][i] != infinito and i not in nosMarcados: # se o não estiver marcado e é adjacente a n 
+        vetorAdjacencias.append(i)
+    print(f"As adjacencias de {n} é {vetorAdjacencias}")
+    return vetorAdjacencias 
+    
+  def conexidade(self):
+    verticeInicio = 0
     print("VERIFICANDO CONEXIDADE")
     # Cria a pilha e array de nós marcados e contador para marcar os nós visitados
     quantidade_visitados = 0
     nosMarcados = []
     pilha = Pilha()
     # Visita o Nó
-    print(f"Nó inicial visitado: {chr((verticeInicio+1)+96)}")
+    print(f"Nó inicial visitado: {verticeInicio}")
     quantidade_visitados += 1
     # Marca o nó inicial
     nosMarcados.append(verticeInicio)
@@ -164,10 +175,10 @@ class Grafo:
       #print("Pilha está assim = ", pilha)
 
       adjacentesDeN = self.adjacenciasVertice(n, nosMarcados)
-      #print(f"adjacentes de 0 = ", adjacentesDeN)
+      print(f"adjacentes de {n} = ", adjacentesDeN)
       
       while len(adjacentesDeN) > 0: # Roda em todos os adjacentes de "n" que ainda não foram marcados
-        print("Nó m visitado = ", chr((adjacentesDeN[0]+1) + 96))
+        #print("Nó m visitado = ", chr((adjacentesDeN[0]+1) + 96))
         quantidade_visitados += 1 # incrementa visitados
         pilha.push(n)
         #print("n colocado na pilha = ", pilha)
@@ -178,10 +189,11 @@ class Grafo:
     # mostrando Percurso em profundidade
     print("O percurso em profundidade foi:", end = " ")
     for i in nosMarcados:
-      print(chr((i+1)+96), end = " ")
+      print(i, end = " ")
     print("\n\n")
-
-    # Tendo o percurso em profundidade, poderemos verifica a conexidade
+    
+    
+    # Tendo o percurso em profundidade, poderemos verificar a conexidade
     print(f"Qtd de vértices = {self.n}. Qtd_vistiados = {quantidade_visitados}")
     # Verifica se o grafo é conexo ou não 
     if(self.n == quantidade_visitados):
