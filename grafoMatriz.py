@@ -214,7 +214,7 @@ class Grafo:
     indice_v1 = self.getPosicaoNome(v1)
     indice_v2 = self.getPosicaoNome(v2)
 
-    print(f"indice 1 = {indice_v1}, indice 2 = {indice_v2}")
+    #print(f"indice 1 = {indice_v1}, indice 2 = {indice_v2}")
     if indice_v1 == -1 or indice_v2 == -1:
       print("Alguma vértice digitado não existe!")
     else:
@@ -258,11 +258,11 @@ class Grafo:
         
 
     #print("Terminou o algoritmo!")
-    print(f"A seguir, temos a melhor rota com o tempo entre {v1} e {v2}:\n")
+    print(f"\nA seguir, temos a rota com o menor tempo entre {v1} e {v2}:\n")
     #Vetor = [i for i in range(0, self.n)]
     #print("Vetor", Vetor)
-    print("ROT:", rot)
-    print("Distancias:", d)
+    #print("ROT:", rot)
+    #print("Distancias:", d)
     
     # Vamos pegar a rota que devemos fazer
     rota = []
@@ -283,7 +283,7 @@ class Grafo:
       print(f"{self.nomes_vertices[rota_invertida[i]]} ---> {self.nomes_vertices[rota_invertida[i+1]]} = {self.adj[rota_invertida[i]][rota_invertida[i+1]]}\n" )
 
     # Por último, iremos printar o tempo total do percurso de acordo com o que foi calculado no algoritmo
-    print("TEMPO TOTAL DO PERCURSO = ")
+    print("\nTEMPO TOTAL DO PERCURSO = ", d[indice_v2])
   
     
   
