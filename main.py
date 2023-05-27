@@ -33,8 +33,9 @@ while True:
   print("| 8:  Mostrar conexidade do grafo.       |")
   print("| 9:  Mostrar conteúdo do arquivo.       |")
   print("| 10: Mostrar grafo.                     |")
-  print("| 11: Encerrar a aplicação.              |")
-  print("+--------------------------------------+\n")
+  print("| 11: Exibir adjacências de um vértice.  |")
+  print("| 12: Encerrar a aplicação.              |")
+  print("+----------------------------------------+\n")
 
   opcao = int(input("Escolha uma opção: "))
 
@@ -135,9 +136,9 @@ while True:
 
     case 7:
       if controle_carregamento == False:
-        #v1 = input("Diga o vértice origem:")
-        #v2 = input("Diga o vértice destino:")
-        grafo.menor_caminho(1,2)
+        v1 = input("Diga o vértice origem: ")
+        v2 = input("Diga o vértice destino: ")
+        grafo.menor_caminho(v1.upper(),v2.upper())
       else:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")  
       
@@ -158,8 +159,15 @@ while True:
         grafo.show()
       else:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
-        
+
     case 11:
+      if controle_carregamento == False:
+        vertice = input("Diga o vértice que você deseja exibir as adjacências:")
+        grafo.mostrarAdjacenciaVertice(vertice.upper())
+      else:
+        print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
+        
+    case 12:
       print("Aplicação encerrada!")
       break
       

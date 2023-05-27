@@ -152,18 +152,24 @@ class Grafo:
     for i in range(self.n): #percorre linhas
       if self.adj[n][i] != infinito and i not in nosMarcados: # se o não estiver marcado e é adjacente a n 
         vetorAdjacencias.append(i)
-    print(f"As adjacencias de {n} é {vetorAdjacencias}")
     return vetorAdjacencias 
+
+  def adjacenciasV(self, n):
+    vetorAdjacencias = []
+    for i in range(self.n): #percorre linhas
+      if self.adj[n][i] != infinito: # se é adjacente a n 
+        vetorAdjacencias.append(i)
+    return vetorAdjacencias
+    
     
   def conexidade(self):
     verticeInicio = 0
-    print("VERIFICANDO CONEXIDADE")
     # Cria a pilha e array de nós marcados e contador para marcar os nós visitados
     quantidade_visitados = 0
     nosMarcados = []
     pilha = Pilha()
     # Visita o Nó
-    print(f"Nó inicial visitado: {verticeInicio}")
+    #print(f"Nó inicial visitado: {verticeInicio}")
     quantidade_visitados += 1
     # Marca o nó inicial
     nosMarcados.append(verticeInicio)
@@ -175,7 +181,7 @@ class Grafo:
       #print("Pilha está assim = ", pilha)
 
       adjacentesDeN = self.adjacenciasVertice(n, nosMarcados)
-      print(f"adjacentes de {n} = ", adjacentesDeN)
+      #print(f"adjacentes de {n} = ", adjacentesDeN)
       
       while len(adjacentesDeN) > 0: # Roda em todos os adjacentes de "n" que ainda não foram marcados
         #print("Nó m visitado = ", chr((adjacentesDeN[0]+1) + 96))
@@ -186,12 +192,13 @@ class Grafo:
         n = adjacentesDeN[0] #"Troca o valor de n para m (n <- m(atribuição)) = ", n, "\n")
         adjacentesDeN = self.adjacenciasVertice(n, nosMarcados)
 
+    '''
     # mostrando Percurso em profundidade
     print("O percurso em profundidade foi:", end = " ")
     for i in nosMarcados:
       print(i, end = " ")
     print("\n\n")
-    
+    '''
     
     # Tendo o percurso em profundidade, poderemos verificar a conexidade
     print(f"Qtd de vértices = {self.n}. Qtd_vistiados = {quantidade_visitados}")
@@ -203,29 +210,95 @@ class Grafo:
   
   # h) Menor caminho entre dois vértices utilizando o algoritmo de Dijkstra
   def menor_caminho(self, v1, v2):
-    # Criando o array A(abertos) e criando os vértices com ele
-    A = []
-    for i in range(self.n):
-      A.append(i)
-      
-    # Criando o array de F(fechados)
-    F = []
+    # Recebe os vértices em nome e descobre se índice
+    indice_v1 = self.getPosicaoNome(v1)
+    indice_v2 = self.getPosicaoNome(v2)
 
-    # Criando o array S(Sucessores) de um vértice r
-    S = []
+    print(f"indice 1 = {indice_v1}, indice 2 = {indice_v2}")
+    if indice_v1 == -1 or indice_v2 == -1:
+      print("Alguma vértice digitado não existe!")
+    else:
+      #print("Continua a lógica")
+      # Criando o array d(distancias)
+      d = [infinito] * self.n
+      #print(d)
+
+      # Atribuindo 0 no array d(distancias) na posição do indice de v1
+      d[indice_v1] = 0
+
+      # Criando array A(abertos), F(fechados), S(sucessores), k e rot(rotas)
+      A = [i for i in range(0, self.n)]
+      #print("A = ", A)
+      F = [] # começa vazio
+      S = [indice_v1] #começa S com o vértice inicial
+      k = 0
+      rot = [-1 for i in range(0, self.n)] #inicializando rot
+
+      while len(A) != 0: #mudar aqui
+        k += 1 
+        distanciasA = []
+        indices = []
+
+        for i in A:
+          distanciasA.append(d[i])
+          indices.append(i)
+
+        r = indices[distanciasA.index(min(distanciasA))]
+        F.append(r)
+        A.remove(r)
+
+        S = list(set(A) & set(self.adjacenciasV(r)))
+
+        for i in S:
+          p = min(d[i], d[r] + self.adj[r][i])
+          if p < d[i]:
+            d[i] = p
+            rot[i] = r
+        
+        
+
+    #print("Terminou o algoritmo!")
+    print(f"A seguir, temos a melhor rota com o tempo entre {v1} e {v2}:\n")
+    #Vetor = [i for i in range(0, self.n)]
+    #print("Vetor", Vetor)
+    print("ROT:", rot)
+    print("Distancias:", d)
     
-    # Número de vértices já processados pelo algoritmo
-    k = 0
+    # Vamos pegar a rota que devemos fazer
+    rota = []
+    indice_aux = indice_v2
+    while indice_aux != indice_v1:
+      vertice_visitar = rot[indice_aux]
+      rota.append(vertice_visitar)
+      indice_aux = vertice_visitar
+    
+    # Vamos inverter a ordem para simular o caminho real a partir de v1
+    rota_invertida = rota[::-1]
+    rota_invertida.append(indice_v2) # Adicionamos o v2 ao array de rotas tmb, pois é o destino e não entrou no laço
+    #print("Essa é a rota invertida: ", rota_invertida)
 
-    # Vetor rot
-    rot = []
+    # Agora, iremos exibir quanto é a distância entre todos os vértice da partida ao destino
+    for i in range(len(rota_invertida)-1):
+      #print("i = ",i, "i + 1 = ", i+1)
+      print(f"{self.nomes_vertices[rota_invertida[i]]} ---> {self.nomes_vertices[rota_invertida[i+1]]} = {self.adj[rota_invertida[i]][rota_invertida[i+1]]}\n" )
 
-    # Enquanto A != de vazio 
-    while len(A) != 0:
-      k += 1
-      
+    # Por último, iremos printar o tempo total do percurso de acordo com o que foi calculado no algoritmo
+    print("TEMPO TOTAL DO PERCURSO = ")
   
     
+  
+  # Método para exibir as adjacências apenas de um vértice
+  def mostrarAdjacenciaVertice(self, vertice):
+    #Vamos pesquisar se o vértice existe na nossa lista de estacoes
+    if vertice in self.nomes_vertices:
+      # Agora, iremos pegar a posição do vértice na matriz e percorrer apenas na linha da matriz referente a ele
+      posicao_vertice = self.getPosicaoNome(vertice)
+      print(f"ADJACÊNCIAS NO VÉRTICE '{vertice}': ")
+      for i in range(self.n):
+        if self.adj[posicao_vertice][i] != infinito:
+          print(f" Adj[{self.nomes_vertices[posicao_vertice]}, {self.nomes_vertices[i]}] = {self.adj[posicao_vertice][i]}")
+    else:
+      print("VÉRTICE NÃO EXISTENTE NO GRAFO")
     
     
     
