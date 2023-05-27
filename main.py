@@ -34,7 +34,8 @@ while True:
   print("| 9:  Mostrar conteúdo do arquivo.       |")
   print("| 10: Mostrar grafo.                     |")
   print("| 11: Exibir adjacências de um vértice.  |")
-  print("| 12: Encerrar a aplicação.              |")
+  print("| 12: Exibir objetivos da ODS do projeto.|")
+  print("| 13: Encerrar a aplicação.              |")
   print("+----------------------------------------+\n")
 
   opcao = int(input("Escolha uma opção: "))
@@ -168,6 +169,9 @@ while True:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
         
     case 12:
+      print("OBJETIVOS DA ODS")
+
+    case 13:
       print("Aplicação encerrada!")
       break
       
