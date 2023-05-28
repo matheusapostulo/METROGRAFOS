@@ -169,7 +169,25 @@ while True:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
         
     case 12:
-      print("OBJETIVOS DA ODS")
+      print("+------------------------------------------------------+")
+      print("|                 OBJETIVOS DA ODS:\n                  |")
+      print("+------------------------------------------------------+")
+      print("| ODS 8 - Trabalho Decente e Crescimento Econômico:    |")
+      print("|        (a)	Emprego e produtividade                   |")
+      print("|        (b)	Economia local                            |")
+      print("|                                                      |")
+      print("| ODS 9 - Indústria, Inovação e Infraestrutura:        |")
+      print("|        (a)	Eficiência do transporte público:         |")
+      print("|        (b)	Inovação tecnológica                      |")
+      print("|        (c)	Sustentabilidade                          |")
+      print("|                                                      |")
+      print("| ODS 16 - Paz, Justiça e Instituições Eficazes:       |")
+      print("|        (a)	Segurança no transporte                   |")
+      print("|        (b)	Eficiência e transparência                |")
+      print("+------------------------------------------------------+\n")
+  
+
+
 
     case 13:
       print("Aplicação encerrada!")

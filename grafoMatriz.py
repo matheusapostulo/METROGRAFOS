@@ -280,10 +280,10 @@ class Grafo:
     # Agora, iremos exibir quanto é a distância entre todos os vértice da partida ao destino
     for i in range(len(rota_invertida)-1):
       #print("i = ",i, "i + 1 = ", i+1)
-      print(f"{self.nomes_vertices[rota_invertida[i]]} ---> {self.nomes_vertices[rota_invertida[i+1]]} = {self.adj[rota_invertida[i]][rota_invertida[i+1]]}\n" )
+      print(f"{self.nomes_vertices[rota_invertida[i]]} ---> {self.nomes_vertices[rota_invertida[i+1]]} = {self.adj[rota_invertida[i]][rota_invertida[i+1]]} minutos\n" )
 
     # Por último, iremos printar o tempo total do percurso de acordo com o que foi calculado no algoritmo
-    print("\nTEMPO TOTAL DO PERCURSO = ", d[indice_v2])
+    print(f"\nTEMPO TOTAL DO PERCURSO = { d[indice_v2]} minutos")
   
     
   
