@@ -255,8 +255,6 @@ class Grafo:
             d[i] = p
             rot[i] = r
         
-        
-
     #print("Terminou o algoritmo!")
     print(f"\nA seguir, temos a rota com o menor tempo entre {v1} e {v2}:\n")
     #Vetor = [i for i in range(0, self.n)]
@@ -293,7 +291,7 @@ class Grafo:
     if vertice in self.nomes_vertices:
       # Agora, iremos pegar a posição do vértice na matriz e percorrer apenas na linha da matriz referente a ele
       posicao_vertice = self.getPosicaoNome(vertice)
-      print(f"ADJACÊNCIAS NO VÉRTICE '{vertice}': ")
+      print(f"\nADJACÊNCIAS NO VÉRTICE '{vertice}': ")
       for i in range(self.n):
         if self.adj[posicao_vertice][i] != infinito:
           print(f" Adj[{self.nomes_vertices[posicao_vertice]}, {self.nomes_vertices[i]}] = {self.adj[posicao_vertice][i]}")
