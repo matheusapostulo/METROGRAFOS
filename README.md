@@ -1,4 +1,4 @@
-# METROGRAFOS
+# METRÔGRAFOS
 
 ## DOCUMENTAÇÃO
 Todas informações referentes ao projeto se encontra no arquivo "nome_arquivo". Nesse arquivo, ainda se encontra um vídeo explicativo no YouTube.  
