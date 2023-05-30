@@ -144,8 +144,11 @@ while True:
         print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")  
       
     case 8:
-      grafo.conexidade()
-      
+      if controle_carregamento == False:
+        grafo.conexidade()
+      else:
+        print("Por favor, leia os dados do arquivo (1) antes de selecionar essa opção!")
+        
     case 9:  
       print("Mostrando o conteúdo do arquivo:\n")
       with open("grafo.txt", "r") as conteudo:

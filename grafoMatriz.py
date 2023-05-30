@@ -201,7 +201,8 @@ class Grafo:
     '''
     
     # Tendo o percurso em profundidade, poderemos verificar a conexidade
-    print(f"Qtd de vértices = {self.n}. Qtd_vistiados = {quantidade_visitados}")
+    print(f"Quantitidade de vértices = {self.n}")
+    print(f"Quantidade de vértices visitados no percurso = {quantidade_visitados}\n")
     # Verifica se o grafo é conexo ou não 
     if(self.n == quantidade_visitados):
       print("O grafo é conexo!\n\n")
@@ -216,7 +217,7 @@ class Grafo:
 
     #print(f"indice 1 = {indice_v1}, indice 2 = {indice_v2}")
     if indice_v1 == -1 or indice_v2 == -1:
-      print("Alguma vértice digitado não existe!")
+      print("\nAlguma vértice digitado não existe!")
     else:
       #print("Continua a lógica")
       # Criando o array d(distancias)
@@ -255,33 +256,34 @@ class Grafo:
             d[i] = p
             rot[i] = r
         
-    #print("Terminou o algoritmo!")
-    print(f"\nA seguir, temos a rota com o menor tempo entre {v1} e {v2}:\n")
-    #Vetor = [i for i in range(0, self.n)]
-    #print("Vetor", Vetor)
-    #print("ROT:", rot)
-    #print("Distancias:", d)
     
-    # Vamos pegar a rota que devemos fazer
-    rota = []
-    indice_aux = indice_v2
-    while indice_aux != indice_v1:
-      vertice_visitar = rot[indice_aux]
-      rota.append(vertice_visitar)
-      indice_aux = vertice_visitar
-    
-    # Vamos inverter a ordem para simular o caminho real a partir de v1
-    rota_invertida = rota[::-1]
-    rota_invertida.append(indice_v2) # Adicionamos o v2 ao array de rotas tmb, pois é o destino e não entrou no laço
-    #print("Essa é a rota invertida: ", rota_invertida)
-
-    # Agora, iremos exibir quanto é a distância entre todos os vértice da partida ao destino
-    for i in range(len(rota_invertida)-1):
-      #print("i = ",i, "i + 1 = ", i+1)
-      print(f"{self.nomes_vertices[rota_invertida[i]]} ---> {self.nomes_vertices[rota_invertida[i+1]]} = {self.adj[rota_invertida[i]][rota_invertida[i+1]]} minutos\n" )
-
-    # Por último, iremos printar o tempo total do percurso de acordo com o que foi calculado no algoritmo
-    print(f"\nTEMPO TOTAL DO PERCURSO = { d[indice_v2]} minutos")
+      #print("Terminou o algoritmo!")
+      print(f"\nA seguir, temos a rota com o menor tempo entre {v1} e {v2}:\n")
+      #Vetor = [i for i in range(0, self.n)]
+      #print("Vetor", Vetor)
+      #print("ROT:", rot)
+      #print("Distancias:", d)
+      
+      # Vamos pegar a rota que devemos fazer
+      rota = []
+      indice_aux = indice_v2
+      while indice_aux != indice_v1:
+        vertice_visitar = rot[indice_aux]
+        rota.append(vertice_visitar)
+        indice_aux = vertice_visitar
+      
+      # Vamos inverter a ordem para simular o caminho real a partir de v1
+      rota_invertida = rota[::-1]
+      rota_invertida.append(indice_v2) # Adicionamos o v2 ao array de rotas tmb, pois é o destino e não entrou no laço
+      #print("Essa é a rota invertida: ", rota_invertida)
+  
+      # Agora, iremos exibir quanto é a distância entre todos os vértice da partida ao destino
+      for i in range(len(rota_invertida)-1):
+        #print("i = ",i, "i + 1 = ", i+1)
+        print(f"{self.adj[rota_invertida[i]][rota_invertida[i+1]]} min | {self.nomes_vertices[rota_invertida[i]]} ( ) -> ( ) {self.nomes_vertices[rota_invertida[i+1]]}\n")
+  
+      # Por último, iremos printar o tempo total do percurso de acordo com o que foi calculado no algoritmo
+      print(f"\n{ d[indice_v2]} min | TEMPO TOTAL DO PERCURSO")
   
     
   
@@ -294,7 +296,7 @@ class Grafo:
       print(f"\nADJACÊNCIAS NO VÉRTICE '{vertice}': ")
       for i in range(self.n):
         if self.adj[posicao_vertice][i] != infinito:
-          print(f" Adj[{self.nomes_vertices[posicao_vertice]}, {self.nomes_vertices[i]}] = {self.adj[posicao_vertice][i]}")
+          print(f"{self.adj[posicao_vertice][i]} min | {self.nomes_vertices[posicao_vertice]} ( ) -> ( ) {self.nomes_vertices[i]}")
     else:
       print("VÉRTICE NÃO EXISTENTE NO GRAFO")
     
@@ -309,11 +311,6 @@ class Grafo:
       print(f"ESTAMOS NO VÉRTICE '{self.nomes_vertices[i]}': ")
       for w in range(self.n):
         if self.adj[i][w] != infinito:
-          print(f" Adj[{self.nomes_vertices[i]}, {self.nomes_vertices[w]}] = {self.adj[i][w]}")
-        '''
-        Estamos exibindo apenas as arestas
-        else:
-          print(f" Adj[{self.nomes_vertices[i]}, {self.nomes_vertices[w]}] = {infinito}")
-        '''
+          print(f"{self.adj[i][w]} min | {self.nomes_vertices[i]} ( ) -> ( ) {self.nomes_vertices[w]}")
       print("\n")
     print("fim da impressao do grafo.\n\n")
